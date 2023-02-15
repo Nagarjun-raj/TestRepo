@@ -1,0 +1,9 @@
+Credentials
+
+All GL tools cred
+username--> nagarjun.r
+password---> Nag@692000
+
+
+System password--> Global@897$
+

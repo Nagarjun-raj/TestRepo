@@ -1,0 +1,54 @@
+package main
+
+import "fmt"
+
+type MarksCard interface {
+	Calculate() int
+}
+
+type Student struct {
+	name       string
+	rollnumber int
+	sub1       int
+	sub2       int
+	sub3       int
+	sub4       int
+}
+
+func (s Student) Calculate() int {
+	total := s.sub1 + s.sub2 + s.sub3 + s.sub4
+	percentage := total * 100 / 400
+	return percentage
+
+}
+
+func checking(s Student, m MarksCard) {
+	var result string
+	if s.sub1 < 35 || s.sub2 < 35 || s.sub3 < 35 || s.sub4 < 35 {
+		result = "Fail"
+	} else if m.Calculate() >= 35 && m.Calculate() < 50 {
+		result = "Third Class"
+	} else if m.Calculate() >= 50 && m.Calculate() < 70 {
+		result = "Second Class"
+	} else if m.Calculate() >= 70 && m.Calculate() < 85 {
+		result = "First Class"
+	} else if m.Calculate() >= 85 && m.Calculate() <= 100 {
+		result = "Distinction"
+	} else {
+		result = "Invalid"
+	}
+	total := s.sub1 + s.sub2 + s.sub3 + s.sub4
+	fmt.Println()
+	fmt.Println("Name     RollNumber  Subject1  Subject2  Subject3  Subject4  Total  Result")
+	fmt.Printf("%2s %2d %12d %10d %9d %7d %9d %7s", s.name, s.rollnumber, s.sub1, s.sub2, s.sub3, s.sub4, total, result)
+	fmt.Println()
+}
+func main() {
+	student1 := Student{"Nagarjun", 101, 89, 79, 89, 10}
+	var m MarksCard = student1
+	checking(student1, m)
+	student2 := Student{"Arjun", 102, 52, 36, 48, 60}
+	m = student2
+	checking(student2, m)
+
+}
